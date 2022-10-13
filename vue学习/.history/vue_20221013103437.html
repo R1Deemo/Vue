@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 解决闪动问题 */
+        
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id='app'>
+        <div v-cloak>{{msg}}</div>
+        <div v-text="msg"></div>
+        <div v-html="msg1"></div>
+        <div v-pre>{{msg}}</div>
+        <div v-once>{{info}}</div>
+        <input type="text" v-model='msg'>
+        <div v-text="num"> </div>
+        <!-- 点击事件 -->
+        <button @click="handle">jiayi</button>
+        <button @click="handle1(1,$event)">加一</button>
+
+
+        <!-- 用.stop阻止冒泡 -->
+        <div @click="handle">
+            <button @click.stop> </button>
+        </div>
+        <!-- //用prevent阻止默认行为 -->
+        <a href="www.baidu.com" @click.prevent>百度</a>
+
+        <button @keyup.enter="submit">jiayi</button>
+
+        <!--按键事件-->
+        <form action="">
+            用户名：
+            <input type="text" v-model="uname"> 密码：
+            <input type="password" @keyup.enter='submit' v-model="pwd">
+            <input type="button" @click="submit">
+
+
+        </form>
+
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    // 自定义按键
+    Vue.config.keyCodes.f1 = 112
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: '123',
+            msg1: '<h1>123</h1>',
+            info: 'nihao',
+            num: '0',
+            uname: '',
+            pwd: '',
+
+        },
+        methods: {
+            handle1: function(p, event) {
+                console.log(p);
+                console.log(event.target.innerHTML);
+
+                this.num++
+            },
+            handle: function() {
+                this.num++
+            },
+            handle2: function(event) {
+                // event.stopPropagation(); //阻止冒泡
+
+            },
+            handle3: function(event) {
+                //    event.preventDefault(); //阻止默认事件
+
+
+            },
+            submit: function() {
+                console.log(this.pwd, this.uname);
+            }
+
+        }
+
+    })
+</script>
+
+</html>
