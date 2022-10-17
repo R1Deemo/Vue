@@ -16,21 +16,7 @@
         .bag {
             width: 100px;
             height: 100px;
-            background-color: pink;
-        }
-        
-        .test {
-            color: blue;
-        }
-        
-        .active {
-            border: 1px solid red;
-            width: 100px;
-            height: 100px;
-        }
-        
-        .error {
-            background-color: orange;
+            background-color: black;
         }
     </style>
 
@@ -72,12 +58,7 @@
 
         <!-- 绑定样式 -->
         <div :class="{bag:isTrue}"></div>
-        <!--此处是对象绑定-->
-        <!-- 对象绑定和数组绑定可以同时用-->
-        <div v-bind:class="[activeClass,errorClass,{test:isTest}]">测试样式</div>
-        <div :class="arrClass">简化模式</div>
-        <button @click="trans">切换</button>
-        <button @click="isTestT">切换测试样式 </button>
+        <button @click="trans"></button>
 
 
     </div>
@@ -95,13 +76,9 @@
             info: 'nihao',
             num: '0',
             uname: '',
-            activeClass: 'active',
-            errorClass: 'error',
             pwd: '',
             url: 'www.baidu.com',
-            isTrue: true,
-            isTest: true,
-            arrClass: ['active', 'error', '{test:isTest}'],
+            bag: true,
 
         },
         methods: {
@@ -127,11 +104,8 @@
                 console.log(this.pwd, this.uname);
             },
             trans: function() {
-                this.isTrue = !this.isTrue;
+                this.bag = !this.bag
             },
-            isTestT: function() {
-                this.isTest = !this.isTest;
-            }
 
         }
 
