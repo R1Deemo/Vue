@@ -79,6 +79,10 @@
         <button @click="trans">切换</button>
         <button @click="isTestT">切换测试样式 </button>
 
+        <!-- 内联样式 -->
+        <div v-bind:style="{border:borderStyle,width:widthStyle,height:heightStyle}"></div>
+        <button @click="re">切换内联样式</button>
+
 
     </div>
 </body>
@@ -102,6 +106,9 @@
             isTrue: true,
             isTest: true,
             arrClass: ['active', 'error', '{test:isTest}'],
+            borderStyle: '1px solid red',
+            widthStyle: '100px',
+            heightStyle: '100px',
 
         },
         methods: {
@@ -131,6 +138,9 @@
             },
             isTestT: function() {
                 this.isTest = !this.isTest;
+            },
+            re: function() {
+                this.heightStyle = '200px';
             }
 
         }
