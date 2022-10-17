@@ -82,6 +82,20 @@
         <!-- 内联样式 -->
         <div v-bind:style="{border:borderStyle,width:widthStyle,height:heightStyle}"></div>
         <button @click="re">切换内联样式</button>
+        <!-- 分支结构 -->
+        <div v-if="sorce>90">优秀</div>
+        <div v-else-if="sorce<90&&sorce>80">yiban</div>
+        <div v-else>c</div>
+
+        <!-- 循环结构 -->
+        <div>
+            <ul>
+                <li v-for="item in fruits">{{item}}</li>
+                <li v-for="(item,index) in fruits">{{item+'---'+index}}</li>
+                <li v-for="(item,index) in list">{{item.ename+'---'+item.cname}}</li>
+            </ul>
+        </div>
+
 
 
     </div>
@@ -109,6 +123,18 @@
             borderStyle: '1px solid red',
             widthStyle: '100px',
             heightStyle: '100px',
+            sorce: '20',
+            fruits: ['apple', 'banana'],
+            list: [{
+                ename: 'apple',
+                cname: '苹果'
+            }, {
+                ename: 'banana',
+                cname: '香蕉'
+            }, {
+                ename: '123',
+                cname: '789'
+            }],
 
         },
         methods: {
