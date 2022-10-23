@@ -62,7 +62,7 @@
         <!--按键事件-->
         <form action="">
             用户名：
-            <input type="text" @keyup.aaa="submit" v-model="uname"> 密码：
+            <input type="text" @keyup.aaa="submit" v-model="uname" v-focus="uname"> 密码：
             <input type="password" @keyup.enter='submit' v-model="pwd">
             <input type="button" @click="submit">
         </form>
@@ -92,9 +92,14 @@
             <ul>
                 <li v-for="item in fruits">{{item}}</li>
                 <li v-for="(item,index) in fruits">{{item+'---'+index}}</li>
-                <li v-for="(item,index) in list">{{item.ename+'---'+item.cname}}</li>
+                <li :key="item" v-for="(item,index) in list">{{item.ename+'---'+item.cname}}</li>
             </ul>
         </div>
+
+        <!-- 自定义指令 -->
+        <input type="text" v-color="mm">
+
+
 
 
 
@@ -105,9 +110,27 @@
     // 自定义按键
     Vue.config.keyCodes.aaa = 65
 
+    // <!-- 自定义指令 -->
+    Vue.directive('focus', {
+        inserted: function(el) {
+            el.focus();
+            // console.log(binding)
+        }
+    })
+
+    Vue.directive('color', {
+        inserted: function(el, binding) {
+            el.style.backgroundColor = binding.value.color
+            console.log(binding.value.color)
+        }
+    })
+
     var app = new Vue({
         el: '#app',
         data: {
+            mm: {
+                color: 'orange'
+            },
             msg: '123',
             msg1: '<h1>123</h1>',
             info: 'nihao',
