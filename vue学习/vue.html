@@ -99,6 +99,22 @@
         <!-- 自定义指令 -->
         <input type="text" v-color="mm">
 
+        <!-- 如果不使用计算属性 -->
+        <div>{{msg}}</div>
+        <!-- 利用计算属性翻转 -->
+        <!-- 先由空格分割，变成数组，数组翻转，再转化为字符串 -->
+        <div>{{msg.split('').reverse().join('') }}</div>
+        <!-- 使用计算属性 -->
+        <div>{{reverseString}}</div>
+
+        <!-- 侦听器 -->
+        <div><span>姓</span>
+            <input type="text" v-model="firstName"></div>
+        <span>名</span>
+        <input type="text" v-model="lastName">
+        <div>{{fullName}}</div>
+
+        <div>{{msg | upper}}</div>
 
 
 
@@ -118,20 +134,28 @@
         }
     })
 
-    Vue.directive('color', {
-        inserted: function(el, binding) {
-            el.style.backgroundColor = binding.value.color
-            console.log(binding.value.color)
-        }
+    // Vue.directive('color', {
+    //     inserted: function(el, binding) {
+    //         el.style.backgroundColor = binding.value.color
+    //         console.log(binding.value.color)
+    //     }
+    // })
+
+    // 过滤器
+    Vue.filter('upper', function(val) {
+        return val.charAt(0).toUpperCase() + val.slice(1)
     })
 
     var app = new Vue({
         el: '#app',
         data: {
+            firstName: '123',
+            lastName: '4456',
+            fullName: '123 4456',
             mm: {
                 color: 'orange'
             },
-            msg: '123',
+            msg: 'hello',
             msg1: '<h1>123</h1>',
             info: 'nihao',
             num: '0',
@@ -192,8 +216,34 @@
                 this.heightStyle = '200px';
             }
 
-        }
+        },
+        //  自定义局部指令
+        directives: {
+            color: {
+                bind: function(el, binding) {
+                    el.style.backgroundColor = binding.value.color
+                        // console.log(binding.value.color)
+                }
+            }
+        },
+        // 计算属性
+        computed: {
+            reverseString: function() {
+                return this.msg.split('').reverse().join('')
+            }
+        },
+        // 侦听器
+        watch: {
+            firstName: function(val) {
+                this.fullName = val + ' ' + this.lastName;
+            },
+            lastName: function(val) {
+                this.fullName = this.firstName + ' ' + val;
+            }
 
+
+
+        }
     })
 </script>
 
