@@ -11,8 +11,8 @@
 <body>
 
     <div id="app">
-        <div> {{pmsg}}</div>
-        <menu-item :pstr="pstr" :pnum="12" :pboo="true" :parr="parr"></menu-item>
+        <div :style="fontSize: fontSize+'px'"> {{pmsg}}</div>
+        <menu-item :pstr="pstr" :pnum="12" :pboo="true" :parr="parr" @enlarge-text="handle"></menu-item>
         <!-- 前面不加冒号值会变成字符串 -->
     </div>
 
@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         Vue.component('menu-item', {
-            props: ['pstr', 'pnum', 'pboo', 'parr'], //接受父组件的值
+            props: ['pstr', 'pnum', 'pboo', 'parr'], //传递数据原则是单向数据流
             template: `
             <div>
             <div>{{pstr}}</div>
@@ -28,6 +28,7 @@
             <div>{{typeof pboo}}</div>
             <ul>
                 <li :key='index'v-for='(item,index) in parr'>{{item}}</li>
+                <button @click=$emit("enlarge-text")>扩大父组件中的字体大小</button>
             </ul>
             </div>
 
@@ -39,7 +40,13 @@
                 pmsg: '父组件中的内容 ',
                 // pTitle: '动态绑定属性 ',
                 pstr: 'hello',
-                parr: ['apple', 'banana', 'orange']
+                parr: ['apple', 'banana', 'orange'],
+                fontSize: 10
+            },
+            methods: {
+                handle: function() {
+                    this.fontSize += 0.5
+                }
             }
         })
     </script>

@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         Vue.component('menu-item', {
-            props: ['pstr', 'pnum', 'pboo', 'parr'], //接受父组件的值
+            props: ['pstr', 'pnum', 'pboo', 'parr'], //传递数据原则是单向数据流
             template: `
             <div>
             <div>{{pstr}}</div>
