@@ -13,7 +13,6 @@
     <div id="app">
         <div :style='{fontSize: fontSize+"px"}'> {{pmsg}}</div>
         <menu-item :pstr="pstr" :pnum="12" :pboo="true" :parr="parr" @enlarge-text="handle($event)"></menu-item>
-        <!--用$event接收值-->
         <!-- 前面不加冒号值会变成字符串 -->
     </div>
 

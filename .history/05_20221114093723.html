@@ -13,7 +13,6 @@
     <div id="app">
         <div :style='{fontSize: fontSize+"px"}'> {{pmsg}}</div>
         <menu-item :pstr="pstr" :pnum="12" :pboo="true" :parr="parr" @enlarge-text="handle($event)"></menu-item>
-        <!--用$event接收值-->
         <!-- 前面不加冒号值会变成字符串 -->
     </div>
 
@@ -29,7 +28,7 @@
             <div>{{typeof pboo}}</div>
             <ul>
                 <li :key='index'v-for='(item,index) in parr'>{{item}}</li>
-                <button @click='$emit("enlarge-text")'>扩大父组件中的字体大小</button>
+                // <button @click='$emit("enlarge-text")'>扩大父组件中的字体大小</button>
                 <button @click='$emit("enlarge-text",5)'>扩大父组件中的字体大小加5</button>
 
             </ul>
