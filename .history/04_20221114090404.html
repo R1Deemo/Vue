@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div> {{pmsg}}</div>
+        <menu-item :pstr="pstr" :pnum="12" :pboo="true"></menu-item>
+        <!-- 前面不加冒号值会变成字符串 -->
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('menu-item', {
+            props: ['pstr', 'pnum', 'pboo'], //接受父组件的值
+            template: `
+            <div>
+            <div>{{pstr}}</div>
+            <div>{{pnum}}</div>
+            <div>{{typeof pboo}}</div>
+            <ul>
+                <li :key='index',v-for='(index item) in parr'>{{item}}</li>
+                </ul>
+            </div>
+
+            `
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件中的内容 ',
+                // pTitle: '动态绑定属性 ',
+                pstr: 'hello',
+                parr: ['apple', 'banana', 'orange']
+            }
+        })
+    </script>
+</body>
+
+</html>

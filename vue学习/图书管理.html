@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <script src="./lib/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #main {
+            margin: 0 auto;
+            width: 600px;
+        }
+        
+        #head {
+            text-align: center;
+        }
+        
+        table {
+            /* border: 1px solid red; */
+            width: 100%;
+        }
+        
+        td {
+            border-left: 1px solid red;
+            border-bottom: 1px solid red;
+            text-align: center;
+        }
+        
+        #title tr {
+            background-color: yellow;
+            /* border: 1px solid red; */
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        #search {
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="head">
+            <h1>图书管理</h1>
+        </div>
+        <div>
+            <div id="search">
+                <div><label>编号</label>
+                    <input type="text" v-model="id">
+                    <label>名称</label>
+                    <input type="text" v-model="name">
+                    <button @click="handle">提交</button></div>
+
+            </div>
+            <table>
+
+                <thead id="title">
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for='item in books'>
+
+                        <td>{{item.id}}</td>
+                        <td>{{item.bookname}}</td>
+                        <td>{{item.date}}</td>
+                        <td><a href="#" @click.prevent="set(item.id,item.name)">修改</a><span>|</span><a href="#" @click.prevent>操作</a> </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+
+
+
+        </div>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#main',
+        data: {
+            id: '',
+            name: '',
+            date: new Date,
+            books: [{
+                    id: 1,
+                    bookname: '三国演义',
+                    date: '2022-08-08'
+                }, {
+                    id: 2,
+                    name: '水浒传',
+                    date: ''
+                }, {
+                    id: 3,
+                    name: '西游记',
+                    date: ''
+                }
+
+            ]
+        },
+        methods: {
+            handle: function() {
+                var book = {}
+                var that = this
+                $.get('http://www.liulongbin.top:3006/api/getbooks', function(res) {
+                        console.log(res.data)
+                        that.books = res.data
+                        console.log(that.books)
+                    })
+                    // book.id = this.id;
+                    // book.bookname = this.bookname;
+                    // book.date = '';
+                    // this.books.push(book);
+                    // this.id = '';
+                    // this.bookname = '';
+
+            },
+            set: function(id, name) {
+                this.id = id;
+                this.bookname = name;
+            }
+
+        }
+    })
+</script>
+
+</html>

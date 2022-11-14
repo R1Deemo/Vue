@@ -10,19 +10,28 @@
 
 <body>
     <div id="app">
-        <h1>{{message}}</h1>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-        var app = new Vue({
-            el: "#app",
-            data: {
-                message: "123456",
-            },
+        <div>{{pmsg}}</div>
+        <menu-item :menu-title="pTitle"></menu-item>
 
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <script>
+        Vue.component('menu-item', {
+            props: ['menuTitle', ], //接受父组件的值
+            template: '<div>{{menuTitle}}</div>'
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件中的内容 ',
+                pTitle: '动态绑定属性 '
+            }
         })
     </script>
 </body>
-
 
 </html>

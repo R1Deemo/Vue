@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <hello-world></hello-world>
+        <hello-deii></hello-deii>
+    </div>
+    <!-- <script src="/vue学习/js/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('HelloWorld', {
+                data: function() {
+                    return {
+                        msg: 'helloword'
+                    }
+
+                },
+                template: `
+            <div>{{msg}}</div>
+                 `
+            })
+            // Vue.component('button-counter', {
+            //     data: function() {
+            //         return {
+            //             count: 0
+            //         }
+            //     },
+            //     template: '<button @click="count++">点击了{{count}}次</button>'
+            // })
+            //------------------------------------------------------------------------------
+        Vue.component('button-counter', {
+            //data必须是一个函数 
+            data: function() {
+                return {
+                    count: 0
+                }
+            },
+            template: `
+            <div>
+            <button @click="count++">点击了{{count}}次</button>
+            <button>测试</button>
+            <HelloWorld></HelloWorld>
+            </div>
+            `,
+            methods: {
+
+            },
+        })
+
+
+        var HelloDeii = {
+            data: function() {
+                return {
+                    msg: 'hellodeill'
+                }
+
+            },
+            template: `<div>{{msg}}</div>`
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            //定义局部组件
+            components: {
+                'hello-heii': HelloDeii
+            }
+        })
+    </script>
+
+</body>
+
+</html>
