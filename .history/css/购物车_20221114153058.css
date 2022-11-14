@@ -1,0 +1,53 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    background-color: skyblue;
+    height: 30px;
+}
+
+.container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.change {
+    float: right;
+    width: 80px;
+}
+
+.del {
+    float: right;
+}
+
+a {
+    text-decoration: none;
+}
+
+.num {
+    width: 20px;
+}
+
+.name {
+    float: left;
+    width: 50px;
+}
+
+.cart {
+    width: 600px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.item {
+    height: 30px;
+}
+
+.total {
+    background-color: yellow;
+    width: 100%;
+    float: right;
+}

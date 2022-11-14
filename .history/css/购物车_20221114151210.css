@@ -1,0 +1,22 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.change {
+    display: inline;
+}
+
+.del {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+}

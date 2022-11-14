@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="cart">
+
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var CartTitle = {
+            template: `<div class="title">我的商品</div>`
+        }
+        var CartList = {
+            template: ` 
+                <div class='item'>
+                <div class="name"></div>
+                <div class="change">
+                <a href="">-</a>
+                <input type='text' class='num'/>
+                <a href="">+</a>
+
+                    </div>   
+                    <div class='del'>x</div> 
+                </div>`
+        }
+        var CartTotal = {
+            template: ` <div class="total">
+                    <span>总价</span>
+                    <button>结算</button>
+                </div>`
+        }
+        Vue.component('my-cart', {
+            template: `
+            `,
+            components: {
+                'cart-title': CartTitle,
+                'cart-list': CartList,
+                'cart-total': CartTotal,
+
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <test-tom>
+            <p slot="header">标题信息</p>
+            <p>主要1</p>
+            <p>主要2</p>
+            <p slot="footer">底部信息</p>
+        </test-tom>
+
+
+        <test-tom>
+            <template slot="header">
+                <p >标题信息1</p>
+                <p >标题信息2</p>
+            </template>
+
+            <p>主要1</p>
+            <p>主要2</p>
+            <p slot="footer">底部信息</p>
+        </test-tom>
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('test-tom', {
+            template: `
+            <div>
+                <header>
+                    <slot name='header'></slot>
+                    </header>
+                <main>
+                    <slot></slot>
+                    </main>
+                <footer> <slot name='footer'></slot></footer>
+                </div>
+           `
+
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

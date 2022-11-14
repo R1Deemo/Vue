@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <test :list="list"></test>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('test', {
+            props: ['list'],
+            template: `
+            <div>
+            <ul>
+                <li v-for='item in list'>{{item.name}}</li>
+                </ul>    
+                
+            </div>
+            `
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                    id: 1,
+                    name: 'orange'
+                }, {
+                    id: 2,
+                    name: 'apple'
+                }, {
+                    id: 3,
+                    name: 'banana'
+                }]
+            }
+        })
+    </script>
+</body>
+
+</html>

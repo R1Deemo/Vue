@@ -1,0 +1,39 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* .item {
+    width: 200px;
+} */
+
+.container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.change {
+    float: right;
+}
+
+.del {
+    float: right;
+}
+
+a {
+    text-decoration: none;
+}
+
+.num {
+    width: 20px;
+}
+
+.name {
+    float: left;
+}
+
+.main {
+    width: 100px;
+}
