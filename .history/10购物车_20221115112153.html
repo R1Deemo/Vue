@@ -40,13 +40,13 @@
                 sub: function(id) {
                     this.$emit('change-num', {
                         id: id,
-                        type: 'sub'
+                        type: add
                     })
                 },
                 add: function(id) {
                     this.$emit('change-num', {
                         id: id,
-                        type: 'add'
+                        type: add
                     })
                 },
                 changeNum: function(id, event) {
@@ -112,29 +112,12 @@
             },
             methods: {
                 changeNum: function(val) {
-                    if (val.type == 'change') {
-                        this.list.some(item => {
-                            if (item.id == val.id) {
-                                item.num = val.num
-                                return true
-                            }
-                        });
-                    } else if (val.type == "sub") {
-                        this.list.some(item => {
-                            if (item.id == val.id) {
-                                item.num -= 1
-                                return true
-                            }
-                        });
-                    } else if (val.type == "add") {
-                        this.list.some(item => {
-                            if (item.id == val.id) {
-                                item.num += 1
-                                return true
-                            }
-                        });
-                    }
-
+                    this.list.some(item => {
+                        if (item.id == val.id) {
+                            item.num = val.num
+                            return true
+                        }
+                    });
 
                 },
                 delCart: function(id) {

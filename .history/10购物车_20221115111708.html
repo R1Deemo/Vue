@@ -28,27 +28,15 @@
                 <div class='item' :key='item.id' v-for='item in list'>
                     <div class="name">{{item.name}}</div>
                     <div class="change">
-                        <a href="javascript:;" @click.prevent='sub(item.id)'>-</a>
+                        <a href="">-</a>
                         <input type='text' class='num' :value='item.num' @blur='changeNum(item.id,$event)'/>
-                        <a href="javascript:;" @click.prevent='add(item.id)'>+</a>
+                        <a href="">+</a>
                     </div>   
                     <div class='del' @click='del(item.id)'>x</div> 
                 </div>
            
             </div>`,
             methods: {
-                sub: function(id) {
-                    this.$emit('change-num', {
-                        id: id,
-                        type: 'sub'
-                    })
-                },
-                add: function(id) {
-                    this.$emit('change-num', {
-                        id: id,
-                        type: 'add'
-                    })
-                },
                 changeNum: function(id, event) {
                     this.$emit('change-num', {
                         id: id,
@@ -112,29 +100,12 @@
             },
             methods: {
                 changeNum: function(val) {
-                    if (val.type == 'change') {
-                        this.list.some(item => {
-                            if (item.id == val.id) {
-                                item.num = val.num
-                                return true
-                            }
-                        });
-                    } else if (val.type == "sub") {
-                        this.list.some(item => {
-                            if (item.id == val.id) {
-                                item.num -= 1
-                                return true
-                            }
-                        });
-                    } else if (val.type == "add") {
-                        this.list.some(item => {
-                            if (item.id == val.id) {
-                                item.num += 1
-                                return true
-                            }
-                        });
-                    }
-
+                    this.list.some(item => {
+                        if (item.id == val.id) {
+                            item.num = val.num
+                            return true
+                        }
+                    });
 
                 },
                 delCart: function(id) {
